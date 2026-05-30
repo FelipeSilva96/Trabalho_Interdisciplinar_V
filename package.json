@@ -1,0 +1,25 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "prisma": "6.19",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "@fastify/cors": "^11.2.0",
+    "@prisma/client": "6.19",
+    "dotenv": "^17.4.2",
+    "fastify": "^5.8.5",
+    "tsx": "^4.22.3"
+  }
+}
