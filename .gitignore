@@ -1,5 +1,16 @@
-# Ignore
 node_modules/
 .env
+.env.*
+!.env.example
 dist/
 build/
+coverage/
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+backend/uploads/**/*
+!backend/uploads/.gitkeep
+!backend/uploads/events/
+!backend/uploads/events/.gitkeep
