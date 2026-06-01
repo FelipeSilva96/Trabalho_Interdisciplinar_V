@@ -1,1 +1,61 @@
-// Prisma schema placeholder
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Algorithm {
+  RMS_SIMPLE
+  RMS_TWO_STAGE
+  UNKNOWN
+}
+
+enum EventStatus {
+  PENDING
+  REVIEWED
+  DISCARDED
+}
+
+model Device {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  location    String?
+  description String?
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  events      Event[]
+}
+
+model Event {
+  id          String      @id @default(uuid())
+  deviceId    String?
+  device      Device?     @relation(fields: [deviceId], references: [id], onDelete: SetNull)
+
+  algorithm   Algorithm   @default(UNKNOWN)
+  rms         Float?
+  threshold   Float?
+  latencyUs   Int?
+
+  fileName    String
+  mimeType    String
+  fileSize    Int?
+  imagePath   String
+  imageUrl    String
+
+  status      EventStatus @default(PENDING)
+  notes       String?
+
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  @@index([createdAt])
+  @@index([deviceId])
+  @@index([algorithm])
+  @@index([status])
+}

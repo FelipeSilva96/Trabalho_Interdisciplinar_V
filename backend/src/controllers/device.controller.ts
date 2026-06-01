@@ -1,1 +1,0 @@
-// device.controller.ts placeholder
