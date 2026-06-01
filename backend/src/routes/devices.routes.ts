@@ -1,0 +1,1 @@
+// devices.routes.ts placeholder

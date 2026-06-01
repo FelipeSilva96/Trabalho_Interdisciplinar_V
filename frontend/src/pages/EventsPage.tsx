@@ -1,0 +1,1 @@
+// EventsPage.tsx placeholder
