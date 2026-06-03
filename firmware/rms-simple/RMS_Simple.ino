@@ -6,8 +6,8 @@
 #define BUFFER_SIZE 256
 
 int32_t samples[BUFFER_SIZE];
-// After the other globals (noiseFloor, triggered, lastTriggerTime...)
-unsigned long triggerTimeMicros = 0; // timestamp of detection event
+
+unsigned long triggerTimeMicros = 0;
 
 void setup()
 {
@@ -17,7 +17,7 @@ void setup()
         .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
         .sample_rate = 16000,
         .bits_per_sample = I2S_BITS_PER_SAMPLE_32BIT,
-        .channel_format = I2S_CHANNEL_FMT_ONLY_RIGHT, // keep as working
+        .channel_format = I2S_CHANNEL_FMT_ONLY_RIGHT,
         .communication_format = I2S_COMM_FORMAT_STAND_I2S,
         .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1,
         .dma_buf_count = 8,
@@ -45,7 +45,7 @@ void loop()
 
     for (int i = 0; i < num_samples; i++)
     {
-        int32_t val = samples[i] >> 8; // 24-bit signed
+        int32_t val = samples[i] >> 8;
         if (val > peak_positive)
             peak_positive = val;
         if (val < peak_negative)
@@ -55,7 +55,7 @@ void loop()
 
     triggerTimeMicros = micros();
     int32_t rms = sqrt(sum_sq / num_samples);
-    // --- MEASURE LATENCY ---
+
     unsigned long captureTime = micros();
     unsigned long latency = captureTime - triggerTimeMicros;
     Serial.printf("Latency from trigger to photo capture: %lu us (%.2f ms)\n", latency, latency / 1000.0);

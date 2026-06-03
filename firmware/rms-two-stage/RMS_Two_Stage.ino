@@ -1,16 +1,3 @@
-/*
- * Sound‑Triggered Camera with HTTP Upload
- * Hardware: ESP32‑CAM (AI‑Thinker) + INMP441 microphone
- *
- * Connections (INMP441 → ESP32‑CAM):
- *   VDD  → 3.3V
- *   GND  → GND (use the working GND pin, e.g., the one near 5V)
- *   SD   → GPIO13
- *   WS   → GPIO14
- *   SCK  → GPIO2
- *   L/R  → GND (connect directly to GND)
- */
-
 #include "esp_camera.h"
 #include <WiFi.h>
 #include <HTTPClient.h>
@@ -23,9 +10,7 @@ unsigned long triggerTimeMicros = 0; // timestamp of detection event
 const char *ssid = "IMPLANTAR_MARILENE";
 const char *password = "Rikerson1!";
 
-// Server endpoint (e.g., your PHP script or a test server)
-// Example: "http://192.168.1.100/upload.php"
-const char *serverUrl = "http://IP_LOCAL:3333/api/events?algorithm=RMS_TWO_STAGE&latencyUs=46"; // <-- trocar IP LOCAL  pelo IPv4 do computador
+const char *serverUrl = "http://192.168.43.211:3333/api/events?algorithm=RMS_TWO_STAGE&latencyUs=46"; // AQUI TEM QUE TROCAR O IP LOCAL, PELO IP DO COMPUTADOR QUE ESTÁ RODANDO
 
 // Sound detection parameters
 const float TRIGGER_MULTIPLIER = 4.5; // threshold = noiseFloor * multiplier
