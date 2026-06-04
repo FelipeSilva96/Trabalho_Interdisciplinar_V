@@ -2,10 +2,10 @@
 #include <HTTPClient.h>
 #include "esp_camera.h"
 
-const char *WIFI_SSID = "SEU_WIFI";
-const char *WIFI_PASSWORD = "SUA_SENHA";
+const char *WIFI_SSID = "Colocar meu wifi aqui";
+const char *WIFI_PASSWORD = "minha senha aqui";
 
-const char *SERVER_URL = "http://SEU_IP_LOCAL:3333/api/events?algorithm=RMS_TWO_STAGE";
+const char *SERVER_URL = "http://IP_LOCAL:3333/api/events?algorithm=RMS_TWO_STAGE";
 
 bool uploadFrame(camera_fb_t *fb)
 {
